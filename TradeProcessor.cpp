@@ -8,7 +8,7 @@
 
 
 
-void Process(FILE* stream) {
+void ConvertCSVtoXMLFile(FILE* stream) {
     char line[1024];
     TradeRecord objects[1024];
     int lineCount = 0;
