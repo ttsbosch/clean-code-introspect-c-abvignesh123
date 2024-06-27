@@ -1,6 +1,6 @@
 typedef struct {
-    char SC[256]; // SourceCurrency
-    char DC[256]; // DestibationCurrency
+    char SourceCurrency[256]; 
+    char DestinationCurrency[256];
     float Lots;
     double Price;
-} TradeRecord;
+} TradeRecords;
