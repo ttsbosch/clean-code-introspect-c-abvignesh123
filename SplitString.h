@@ -1,42 +1,41 @@
-char** SplitString(const char* str, char delimiter) {
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int CountDelimiters(const char* input_string, char delimiter) {
     int count = 0;
-    const char* strPtr = str;
-    
-    // Count the number of delimiters in the string
-    while (*strPtr != '\0') {
-        if (*strPtr++ == delimiter) {
+    const char* string_reference = input_string;
+ 
+    while (*string_reference != '\0') {
+        if (*string_reference == delimiter) {
             count++;
         }
+        string_reference++;
     }
-
-    // Allocate memory for the tokens array
+ 
+    return count;
+}
+char** SplitString(const char* input_string, char delimiter) {
+    int count = CountDelimiters(input_string, delimiter) + 1;
     char** tokens = (char**)malloc(sizeof(char*) * (count + 2));
-    int tokenIndex = 0;
-    strPtr = str;
-    
-    // Allocate memory for the current token
-    char* token = (char*)malloc(strlen(str) + 1);
-    int tokenLength = 0;
-    
-    // Split the string into tokens
-    while (*strPtr != '\0') {
-        if (*strPtr == delimiter) {
-            token[tokenLength] = '\0';
-            tokens[tokenIndex++] = strdup(token);
-            tokenLength = 0;
+    int token_index = 0;
+    string_reference = input_string;
+    char* token = (char*)malloc(strlen(input_string) + 1);
+    int tokens_index = 0;
+    while (*string_reference != '\0') {
+        if (*string_reference == delimiter) {
+            token[tokens_index] = '\0';
+            tokens[token_index++] = strdup(token);
+            tokens_index = 0;
         } else {
-            token[tokenLength++] = *strPtr;
+            token[tokens_index++] = *string_reference;
         }
-        strPtr++;
+        string_reference++;
     }
-    
-    // Add the last token to the tokens array
-    token[tokenLength] = '\0';
-    tokens[tokenIndex++] = strdup(token);
-    tokens[tokenIndex] = NULL;
-    
-    // Free the memory allocated for the current token
+    // Add the last token
+    token[tokens_index] = '\0';
+    tokens[token_index] = strdup(token);
+    tokens[token_index + 1] = NULL;
     free(token);
-    
     return tokens;
 }
