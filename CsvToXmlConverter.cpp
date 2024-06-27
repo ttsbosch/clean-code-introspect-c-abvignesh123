@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include "CSVtoXMLConverter.h"
+#include "CsvToXmlConverter.h"
  
 int main() {
     FILE* file = fopen("../trades.txt", "r");
