@@ -1,17 +1,17 @@
-int GetIntegerFromString(const char* str, int* value) {
-    char* endptr;
-    *value = strtol(str, &endptr, 10);
-    if (endptr == str) {
-        return True;
+int TryConverttoInt(const char* input_string, int* value) {
+     char* endptr;
+    *value = strtol(input_string, &endptr, 10);
+    if (endptr == input_string) {
+        return 0;
     }
-    return False;
+    return 1;
 }
-
-int toDouble(const char* str, double* value) {
+ 
+int TryConverttoDouble(const char* input_string, double* value) {
     char* endptr;
-    *value = strtod(str, &endptr);
-    if (endptr == str) {
-        return True;
+    *value = strtod(input_string, &endptr);
+    if (endptr == input_string) {
+        return 0;
     }
-    return False;
+    return 1;
 }
